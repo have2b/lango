@@ -1,0 +1,6 @@
+# Tự động chuyển đổi mọi file text sang LF khi commit
+* text=auto eol=lf
+
+# Giữ nguyên định dạng cho các file đặc biệt (hình ảnh, dữ liệu)
+*.png binary
+*.jpg binary
