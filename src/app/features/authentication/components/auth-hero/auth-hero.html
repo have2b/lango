@@ -1,0 +1,74 @@
+<section
+  class="bg-primary flex h-full flex-col gap-3 rounded-b-3xl px-3 pt-5 pb-4 text-white lg:justify-between lg:rounded-none lg:px-12 lg:py-11"
+>
+  <p class="flex items-center gap-2 text-xl font-bold tracking-tight">
+    <span class="border-accent size-5 rounded-full border-[5px] bg-white"></span>
+    lango
+  </p>
+
+  <div>
+    <p class="text-accent hidden font-mono text-xs tracking-[0.15em] uppercase lg:block">
+      Line 01 · Your next language
+    </p>
+    <h1
+      class="font-display text-[2.1rem] leading-[0.95] font-extrabold tracking-tight lg:mt-4 lg:text-7xl"
+    >
+      Wohin als<br />Nächstes?
+    </h1>
+    <p class="mt-2 text-sm text-slate-300 lg:mt-6 lg:text-base">
+      <span class="font-mono text-xs lg:text-sm">[ˈvoːhɪn als ˈnɛːçstəs]</span>
+      — Where to next?
+    </p>
+    <p class="mt-4 hidden max-w-md leading-relaxed text-slate-300 lg:block">
+      Every Lango course is drawn like a transit line. Short lessons are stations, exams are
+      interchanges, and you always know how far it is to the next level.
+    </p>
+  </div>
+
+  <!-- Transit line: stations are spread evenly, the track is filled up to the current one -->
+  <div aria-label="Course progress">
+    <div class="relative h-4">
+      <span class="absolute inset-x-2 top-1.75 h-0.5 bg-slate-600"></span>
+      <span
+        class="absolute left-2 top-1.75 h-0.5 bg-white"
+        [style.width]="'calc((100% - 1rem) * ' + offset(current) + ')'"
+      ></span>
+      @for (station of stations; track station; let i = $index) {
+        <span
+          class="absolute top-0 size-4 rounded-full"
+          [style.left]="'calc((100% - 1rem) * ' + offset(i) + ')'"
+          [class]="
+            i < current
+              ? 'bg-white'
+              : i === current
+                ? 'bg-accent ring-3 ring-white'
+                : 'bg-primary border-2 border-slate-400'
+          "
+        ></span>
+      }
+    </div>
+
+    <ol class="relative mt-2 h-5 text-xs lg:mt-3 lg:text-sm">
+      @for (station of stations; track station; let i = $index, first = $first, last = $last) {
+        <li
+          class="absolute whitespace-nowrap"
+          [style.left]="
+            first ? '0' : last ? null : 'calc(0.5rem + (100% - 1rem) * ' + offset(i) + ')'
+          "
+          [style.right]="last ? '0' : null"
+          [class.-translate-x-1/2]="!first && !last"
+          [class]="
+            i === current
+              ? 'font-bold text-white'
+              : i < current
+                ? 'text-slate-300'
+                : 'text-slate-500'
+          "
+          [attr.aria-current]="i === current ? 'step' : null"
+        >
+          {{ station }}
+        </li>
+      }
+    </ol>
+  </div>
+</section>

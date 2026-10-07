@@ -1,0 +1,76 @@
+<form [formGroup]="form" (ngSubmit)="submit()" novalidate class="flex flex-col gap-4">
+  <div>
+    <label for="email" class="text-primary mb-1.5 block text-sm font-semibold">Email</label>
+    <input
+      id="email"
+      type="email"
+      formControlName="email"
+      autocomplete="email"
+      placeholder="you@example.com"
+      class="text-primary w-full rounded-lg border bg-white px-3 py-2.5 outline-none focus:ring-2 focus:ring-slate-300"
+      [class]="
+        form.controls.email.touched && form.controls.email.invalid
+          ? 'border-red-500'
+          : 'border-slate-300'
+      "
+    />
+    @if (form.controls.email.touched && form.controls.email.errors; as errors) {
+      <p class="mt-1 text-xs text-red-600">
+        {{ errors['required'] ? 'Email is required.' : 'Enter a valid email address.' }}
+      </p>
+    }
+  </div>
+
+  <div>
+    <div class="mb-1.5 flex items-center justify-between">
+      <label for="password" class="text-primary text-sm font-semibold">Password</label>
+      <a href="#" class="hidden text-xs text-blue-600 underline lg:inline">Forgot password?</a>
+    </div>
+    <div class="relative">
+      <input
+        id="password"
+        [type]="showPassword() ? 'text' : 'password'"
+        formControlName="password"
+        autocomplete="current-password"
+        class="text-primary w-full rounded-lg border bg-white py-2.5 pr-11 pl-3 outline-none focus:ring-2 focus:ring-slate-300"
+        [class]="
+          form.controls.password.touched && form.controls.password.invalid
+            ? 'border-red-500'
+            : 'border-slate-300'
+        "
+      />
+      <button
+        type="button"
+        (click)="showPassword.set(!showPassword())"
+        [attr.aria-label]="showPassword() ? 'Hide password' : 'Show password'"
+        class="absolute inset-y-0 right-0 flex w-11 items-center justify-center text-slate-500 hover:text-slate-700 cursor-pointer"
+      >
+        @if (showPassword()) {
+          <svg lucideEyeOff [size]="20" aria-hidden="true"></svg>
+        } @else {
+          <svg lucideEye [size]="20" aria-hidden="true"></svg>
+        }
+      </button>
+    </div>
+    @if (form.controls.password.touched && form.controls.password.errors; as errors) {
+      <p class="mt-1 text-xs text-red-600">
+        {{
+          errors['required'] ? 'Password is required.' : 'Password must be at least 8 characters.'
+        }}
+      </p>
+    }
+    <a href="#" class="mt-2 block text-right text-sm text-blue-600 underline lg:hidden">
+      Forgot password?
+    </a>
+  </div>
+
+  <label class="text-primary hidden items-center gap-3 text-sm lg:flex">
+    <input type="checkbox" formControlName="remember" class="accent-primary size-4.5" />
+    Keep me signed in on this device
+  </label>
+
+  <button appButton type="submit" [disabled]="submitting()">
+    {{ submitting() ? 'Signing in…' : 'Sign in' }}
+    <svg lucideLogIn [size]="16" aria-hidden="true"></svg>
+  </button>
+</form>

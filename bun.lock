@@ -13,6 +13,7 @@
         "@angular/platform-server": "^22.2.0",
         "@angular/router": "^22.2.0",
         "@angular/ssr": "^22.2.2",
+        "@lucide/angular": "^1.52.0",
         "express": "^5.1.0",
         "rxjs": "~7.8.0",
         "tslib": "^2.3.0",
@@ -207,6 +208,8 @@
     "@lmdb/lmdb-win32-arm64": ["@lmdb/lmdb-win32-arm64@3.5.6", "", { "os": "win32", "cpu": "arm64" }, "sha512-J7A9aEQsQiv0TYtBGL7NDIPp2lOS8nnl+zm4sWZm1xlsTTaQ4PgD096Adzdrk27rw3UxCkDXdCUa4ax41oztBQ=="],
 
     "@lmdb/lmdb-win32-x64": ["@lmdb/lmdb-win32-x64@3.5.6", "", { "os": "win32", "cpu": "x64" }, "sha512-1g7G0knRX2iV/voDu54yxrGqw5Dk0w2oIYb7dgJq8IkOi+m7wbD8Q3QpPFjh0C01G58S88dqGn03len6UPCXsg=="],
+
+    "@lucide/angular": ["@lucide/angular@1.52.0", "", { "dependencies": { "tslib": "^2.3.0" }, "peerDependencies": { "@angular/common": ">=17.0.0", "@angular/core": ">=17.0.0" } }, "sha512-4iRxeb9/M7NvLq1qcdA9gs8aemh26WicXLgQxBKNYhQ9JlDUK/wytARuLzCW7jWTb6Qew1hCoIjEx3JLc/ULrg=="],
 
     "@modelcontextprotocol/core": ["@modelcontextprotocol/core@2.3.1", "", { "dependencies": { "zod": "^4.2.0" } }, "sha512-laVmIhPGpWi7rG9q+0UigblRN0Hws/Yjlb6qLFtVqryXVLkc4h+yN8z731POD2LnAGQlFe7/tXhUm7Bi0YB91g=="],
 
